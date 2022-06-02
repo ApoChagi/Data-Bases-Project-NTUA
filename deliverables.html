@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<style>
+table, th, td {
+  border:1px solid black;
+  border-collapse: collapse;
+}
+</style
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>HOW ARE YOU</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div align="center">
+  <h1>DELIVERABLES</h1>
+</div>
+ <form action="/deliverables" method="get">
+    {% if deliverables|length == 0 %}
+        <h1 style="margin-top: 5rem;">No deliverables found!</h1>
+    {% else %}
+        <table class="table" style="text-align:center">
+                            <thead>
+                                <tr>
+                                    <th>Project ID</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Delivery Date</th>
+                                                   
+                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for deliverable in deliverables %}
+                                    <tr>
+                                        <td> {{ deliverable.ID_Project }} </td>
+                                        <td> {{ deliverable.Title }} </td>
+                                        <td> {{ deliverable.Description }} </td>
+                                        <td> {{ deliverable.Delivery_Date }} </td>
+                    
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table> 
+    {% endif %}
+
+</form>
+<br><br>
+{% if deliverables|length != 0 %}
+<form action="/deliverables" method="post">
+<b>If you want to delete an entry choose the project's ID and the corresponding title</b><br><br>
+Project ID: <input name = "proj" type="text" />
+Title: <input name = "title" type="text" />
+<input type = "submit" value = "Submit"><br><br>
+<b>If you want to update an entry choose their project's ID:</b>
+<input type="text" name="ID1" id="ID1"/>
+<input type = "button" onclick = "up()" value = "Submit">
+</form>
+{% endif %}
+<script> 
+  	function up()
+	{
+		var upd = document.getElementById('ID1').value;
+		window.location = "/deliverables/update/" + upd 
+	}
+</script>
+</body>
+</html>
