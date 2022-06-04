@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Databases project 2022</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div align="center">
+  <h1>Create an organization</h1>
+</div>
+<br>
+<form action="create" method="post">
+Abbreviation (up to 5 chars): <input name="abbrev" type="text"><br><br>
+Name (up to 45 chars): <input type="text" name="name"><br><br>
+Street Name (up to 45 chars): <input name="sname" type="text"><br><br>
+Street Number (up to 4 digits): <input type="text" name="snum"><br><br>
+Postcode (up to 7 digits): <input name="postc" type="text"><br><br>
+City (up to 45 chars): <input type="text" name="city"><br><br>
+Category: <select name="categ">
+	{% for c in category %}
+	<option	 value='{{c.Category}}'>{{c.Category}}</option>
+	{% endfor %}
+</select>
+<br><br>
+Warning: If you are going to insert a company then fill only the <b>Equity Budget</b> from the below fields. 
+<br>If you are going to insert a research center then fill <b>Min.Educ. Budget</b> and <b>Private Actions Budget</b> from the below fields.
+<br>If you are going to insert a university then fill only the <b>Min.Educ. Budget</b> from the below fields.
+<br><br>
+Min.Educ. Budget (up to 9 digits): <input type="text" name="mined"><br><br>
+Private Actions Budget (up to 9 digits): <input type="text" name="prac"><br><br>
+Equity Budget (up to 9 digits): <input type="text" name="eq"><br><br>
+<input type = "submit" value = "Submit">
+</form>
+</body>
+</html>	
