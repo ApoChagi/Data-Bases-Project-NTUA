@@ -82,8 +82,7 @@ inner join works w on r.ID_Researcher = w.ID_Researcher
 inner join project p on w.ID_Project = p.ID_Project 
 where p.ID_Project not in (select ID_Project from deliverable) 
 group by r.ID_Researcher 
-having Number_of_Projects_without_Submissions > 4
-order by Number_of_Projects_without_Submissions;
+having Number_of_Projects_without_Submissions > 4;
 
 
 
