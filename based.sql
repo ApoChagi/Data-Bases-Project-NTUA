@@ -13,7 +13,7 @@ CREATE TABLE `organization` (
   `Budget_Private_Actions` int(9) DEFAULT NULL CHECK (`Budget_Private_Actions` >= 0),
   `Budget_Equity` int(9) DEFAULT NULL CHECK (`Budget_Equity` >= 0),
   PRIMARY KEY (`ID_Org`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 CREATE TABLE `executive` (
@@ -48,7 +48,7 @@ CREATE TABLE `researcher` (
   PRIMARY KEY (`ID_Researcher`),
   KEY `ID_org` (`ID_org`),
   CONSTRAINT `ID_org_Researcher` FOREIGN KEY (`ID_org`) REFERENCES `organization` (`ID_Org`) ON UPDATE CASCADE ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 CREATE TABLE `organization_phone_numbers` (
@@ -84,7 +84,7 @@ CREATE TABLE `project` (
   CONSTRAINT `ID_Program_Project` FOREIGN KEY (`ID_Program`) REFERENCES `program` (`ID_Program`) ON UPDATE CASCADE,
   CONSTRAINT `ID_Researcher_in_Charge_Project` FOREIGN KEY (`ID_Researcher_in_Charge`) REFERENCES `researcher` (`ID_Researcher`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `ID_org_Project` FOREIGN KEY (`ID_org`) REFERENCES `organization` (`ID_Org`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=344 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 
