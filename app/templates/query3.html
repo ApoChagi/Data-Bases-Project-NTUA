@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<style>
+table, th, td {
+  border:1px solid black;
+  border-collapse: collapse;
+}
+</style
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Databases project 2022</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div align="center">
+  <h1>Choose the scientific field you want</h1>
+</div>
+<form action="/query3"  method="post"><br><br>
+{% if fields|length == 0 %}
+		<h1 style="margin-top: 5rem;">There is no scientific field to use :( </h1>
+	{% else %}
+		Choices: <select name="choice">
+						{% for f in fields %}
+						<option	 value='{{f.Name}}'>{{f.Name}}</option>
+						{% endfor %}
+						</select>
+	{% endif %}
+<input type = "submit" value = "Submit">
+<br><br>
+</form>
+</body>
+
+</html>

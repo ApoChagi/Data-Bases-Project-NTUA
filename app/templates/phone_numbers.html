@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<style>
+table, th, td {
+  border:1px solid black;
+  border-collapse: collapse;
+}
+</style
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Databases project 2022</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div align="center">
+  <h1>PHONE NUMBERS</h1>
+</div>
+ <form action="/organization_phone_numbers" method="get">
+	{% if telephones|length == 0 %}
+		<h1 style="margin-top: 5rem;">There in no entry here!</h1>
+	{% else %}
+		<table class="table" style="text-align:center">
+                            <thead>
+                                <tr>
+                                    <th>ID Org</th>
+                                    <th>Phone Number</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for tel in telephones %}
+                                    <tr>
+                                        <td> {{ tel.ID_Org }} </td>
+                                        <td> {{ tel.Phone_Number }} </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table> 
+	{% endif %}
+
+</form>
+<br><br>
+{% if telephones|length != 0 %}
+ <form action="/organization_phone_numbers" method="post">
+<b>If you want to delete an entry choose the organization's ID and the corresponding phone number.</b><br><br>
+Organization ID: <input name = "org" type="text" name="ID" />
+Phone: <input name = "phone" type="text" name="ID2" />
+<input type = "submit" value = "Submit"><br><br>
+<b>If you want to update an entry choose organization's ID:</b>
+<input type="text" name="ID1" id="ID1"/>
+<input type = "button" onclick = "up()" value = "Submit"><br><br>
+If you want to return to the home page click here: <input type = "button" onclick = "home()" value = "Submit">
+</form>
+{% endif %}
+<script> 
+  	function up()
+	{
+		var upd = document.getElementById('ID1').value;
+		window.location = "/organization_phone_numbers/update/" + upd;
+	}
+</script>
+<script> 
+  	function home()
+	{
+		window.location = "/";
+	}
+</script>
+</body>
+</html>

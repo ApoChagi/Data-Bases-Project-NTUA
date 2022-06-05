@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<style>
+table, th, td {
+  border:1px solid black;
+  border-collapse: collapse;
+}
+</style
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Databases project 2022</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div align="center">
+  <h1>EXECUTIVES</h1>
+</div>
+ <form action="/executives" method="get">
+	{% if executives|length == 0 %}
+		<h1 style="margin-top: 5rem;">No executives found!</h1>
+	{% else %}
+		<table class="table" style="text-align:center">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Branch</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for executive in executives %}
+                                    <tr>
+                                        <td> {{ executive.ID_Executive }} </td>
+                                        <td> {{ executive.First_Name }} </td>
+                                        <td> {{ executive.Last_Name }} </td>
+                                        <td> {{ executive.Branch }} </td>
+					
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table> 
+	{% endif %}
+
+
+</form>
+<br><br>
+{% if executives|length != 0 %}
+<b>If you want to delete an entry choose their ID:</b>
+<input type="text" name="ID" id="ID"/>
+<input type = "button" onclick = "red()" value = "Submit"><br><br>
+<b>If you want to update an entry choose their ID:</b>
+<input type="text" name="ID1" id="ID1"/>
+<input type = "button" onclick = "up()" value = "Submit"><br><br>
+If you want to return to the home page click here: <input type = "button" onclick = "home()" value = "Submit">
+
+{% endif %}
+<script> 
+  	function red()
+	{
+		var input = document.getElementById('ID').value;
+		window.location = "/executives/delete/" + input;
+	}
+</script>
+<script> 
+  	function up()
+	{
+		var upd = document.getElementById('ID1').value;
+		window.location = "/executives/update/" + upd;
+	}
+</script>
+<script> 
+  	function home()
+	{
+		window.location = "/";
+	}
+</script>
+</body>
+</html>

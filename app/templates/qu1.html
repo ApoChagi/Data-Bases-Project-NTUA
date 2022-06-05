@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<style>
+table, th, td {
+  border:1px solid black;
+  border-collapse: collapse;
+}
+</style
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Databases project 2022</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div align="center">
+  <h1>Query 1 projects based on the selected criteria</h1>
+</div>
+{% if projects|length == 0 %}
+	<h1 style="margin-top: 5rem;">EMPTY SET</h1>
+{% else %}
+  <table class="table" style="width:100%;text-align:center">
+                            <thead>
+                                <tr>
+                                    <th style="width:6%">Project ID</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Start Date</th>
+                                    <th>Finish Date</th>
+                                    <th>Funding Amount</th>
+                                    <th>Duration</th>
+                                    <th style="width:6%">Organization ID</th>
+                                    <th style="width:6%">ID of Researcher in charge</th>
+                                    <th style="width:6%">Evaluator ID</th>
+                                    <th>Evaluation Grade</th>
+				    <th>Evaluation_Date</th>
+                                    <th style="width:6%">Program ID</th>
+                                    <th style="width:6%">Executive ID</th>
+
+                                                   
+                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for project in projects %}
+                                    <tr>
+                                        <td> {{ project.ID_Project }} </td>
+                                        <td> {{ project.Title }} </td>
+                                        <td> {{ project.Description }} </td>
+                                        <td> {{ project.Start_Date }} </td>
+                                        <td> {{ project.Finish_Date }} </td>
+                                        <td> {{ project.Funding_Amount }} </td>
+                                        <td> {{ project.Duration }} </td>
+                                        <td> {{ project.ID_org }} </td>
+                                        <td> {{ project.ID_Researcher_in_Charge }} </td>
+                                        <td> {{ project.ID_Evaluator }} </td>
+                                        <td> {{ project.Evaluation_Grade }} </td>
+                                        <td> {{ project.Evaluation_Date }} </td>
+                                        <td> {{ project.ID_Program }} </td>
+                                        <td> {{ project.ID_Executive }} </td>                                  
+                    
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+<form  method="post"><br><br>
+<b>To see the workers of one from the above project choose its ID:</b>
+<select onchange="red(this.value)">
+	<option disabled selected></option>
+	{% for p in projects %}
+	<option	 value='{{p.ID_Project}}'>{{p.ID_Project}}</option>
+	{% endfor %}
+</select>
+</form>
+    {% endif %}
+<script> 
+  	function red(src)
+	{
+		
+		window.location = "/qu1/" + src;
+	}
+</script>
+</body>
+</html>

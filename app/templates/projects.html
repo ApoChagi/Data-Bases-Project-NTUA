@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<style>
+table, th, td {
+  border:1px solid black;
+  border-collapse: collapse;
+}
+</style
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Databases project 2022</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div align="center">
+  <h1>PROJECTS</h1>
+</div>
+ <form action="/projects" method="get">
+    {% if projects|length == 0 %}
+        <h1 style="margin-top: 5rem;">No projects found!</h1>
+    {% else %}
+        <table class="table" style="width:100%;text-align:center">
+                            <thead>
+                                <tr>
+                                    <th style="width:6%">Project ID</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Start Date</th>
+                                    <th>Finish Date</th>
+                                    <th>Funding Amount</th>
+                                    <th>Duration</th>
+                                    <th style="width:6%">Organization ID</th>
+                                    <th style="width:6%">ID of Researcher in charge</th>
+                                    <th style="width:6%">Evaluator ID</th>
+                                    <th>Evaluation Grade</th>
+				    <th>Evaluation_Date</th>
+                                    <th style="width:6%">Program ID</th>
+                                    <th style="width:6%">Executive ID</th>
+
+                                                   
+                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for project in projects %}
+                                    <tr>
+                                        <td> {{ project.ID_Project }} </td>
+                                        <td> {{ project.Title }} </td>
+                                        <td> {{ project.Description }} </td>
+                                        <td> {{ project.Start_Date }} </td>
+                                        <td> {{ project.Finish_Date }} </td>
+                                        <td> {{ project.Funding_Amount }} </td>
+                                        <td> {{ project.Duration }} </td>
+                                        <td> {{ project.ID_org }} </td>
+                                        <td> {{ project.ID_Researcher_in_Charge }} </td>
+                                        <td> {{ project.ID_Evaluator }} </td>
+                                        <td> {{ project.Evaluation_Grade }} </td>
+                                        <td> {{ project.Evaluation_Date }} </td>
+                                        <td> {{ project.ID_Program }} </td>
+                                        <td> {{ project.ID_Executive }} </td>                                  
+                    
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table> 
+    {% endif %}
+
+</form>
+<br><br>
+{% if projects|length != 0 %}
+<b>If you want to delete an entry choose their ID:</b>
+<input type="text" name="ID" id="ID"/>
+<input type = "button" onclick = "red()" value = "Submit"><br><br>
+<b>If you want to update an entry choose their ID:</b>
+<input type="text" name="ID1" id="ID1"/>
+<input type = "button" onclick = "up()" value = "Submit"><br><br>
+If you want to return to the home page click here: <input type = "button" onclick = "home()" value = "Submit">
+{% endif %}
+<script> 
+  	function red()
+	{
+		var input = document.getElementById('ID').value;
+		window.location = "/projects/delete/" + input;
+	}
+</script>
+<script> 
+  	function up()
+	{
+		var upd = document.getElementById('ID1').value;
+		window.location = "/projects/update/" + upd;
+	}
+</script>
+<script> 
+  	function home()
+	{
+		window.location = "/";
+	}
+</script>
+</body>
+</html>

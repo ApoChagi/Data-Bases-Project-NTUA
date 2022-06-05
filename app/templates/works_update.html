@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<style>
+table, th, td {
+  border:1px solid black;
+  border-collapse: collapse;
+}
+</style
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Databases project 2022</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div align="center">
+  <h1>Update the project in which the selected researcher works</h1>
+</div>
+<form  method="post"><br><br>
+	{% if Oldproj|length == 0 %}
+		<h1 style="margin-top: 5rem;">The selected researcer works in 0 projects at this moment :( </h1>
+	{% else %}
+		Select researcher's project ID you want to update:<select name="oldproj">
+						{% for ol in Oldproj %}
+						<option	 value='{{ol.ID_Project}}'>{{ol.ID_Project}}</option>
+						{% endfor %}
+						</select>
+		
+	{% endif %}
+
+{% if proj|length != 0 %}
+<br><br>
+Select researcher's new project ID from the next valid choices<select name="proj">
+						{% for pr in proj %}
+						<option	 value='{{pr.ID_Project}}'>{{pr.ID_Project}}</option>
+						{% endfor %}
+						</select>
+<input type = "submit" value = "Submit">
+{% endif %}
+</form>
+</body>
+</html>	

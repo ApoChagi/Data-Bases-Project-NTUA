@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<style>
+table, th, td {
+  border:1px solid black;
+  border-collapse: collapse;
+}
+</style
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Databases project 2022</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div align="center">
+  <h1>Query 2 result of the first view</h1>
+</div>
+{% if qu2f|length == 0 %}
+	<h1 style="margin-top: 5rem;">EMPTY SET</h1>
+{% else %}
+  <table class="table" style="text-align:center">
+                         
+                            <thead>
+                                <tr>
+                                    <th>Researcher ID</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Project ID</th>
+                                    <th>Project Title</th>
+                                    <th>Funding Amount</th>
+                                    
+                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for qu in qu2f %}
+                                    <tr>
+                                      	<td> {{ qu.ID_Researcher }} </td>
+                                        <td> {{ qu.First_Name }} </td>
+                                        <td> {{ qu.Last_Name }} </td>
+                                        <td> {{ qu.ID_Project }} </td>
+                                        <td> {{ qu.Project_Title }} </td>
+                                        <td> {{ qu.Funding_Amount }} </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table> 
+{% endif %}
+<br><br>
+{% if qu2fs|length == 0 %}
+	<h1 style="margin-top: 5rem;">EMPTY SET</h1>
+{% else %}
+	 <table class="table" style="text-align:center">
+	
+                            <thead>
+                                <tr>
+                                    <th>Researcher ID</th>
+                                    <th>Number of projects</th>                         
+                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for qu in qu2fs %}
+                                    <tr>
+                                      	<td> {{ qu.ID_Researcher }} </td>
+                                        <td> {{ qu.Num }} </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table> 
+    {% endif %}
+</body>
+</html>
